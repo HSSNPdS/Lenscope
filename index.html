@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Lenscope</title>
+</head>
+<body>
+    <header>
+        <h1>LENSCOPE</h1>
+    </header>
+    <main>
+        <form action="#">
+            <div>
+                <h2>Insira abaixo o seu grau esférico</h2>
+                <label for="">
+                    Do olho esquerdo:
+                </label>
+                <input id="ge-esq" type="number" min="-15" max="0" step="0.25">
+
+                <label for="">
+                    Do olho direito:
+                </label>
+                <input id="ge-dir" type="number" min="-15" max="0" step="0.25">
+            </div>
+            <div>
+                <h2>Insira abaixo o seu grau cilíndrico</h2>
+                <label for="">
+                    Do olho esquerdo:
+                </label>
+                <input id="gc-esq"  type="number" min="-6" max="0" step="0.25">
+
+                <label for="">
+                    Do olho direito:
+                </label>
+                <input id="gc-dir" type="number" min="-6" max="0" step="0.25">
+            </div>
+            <button onclick="getValues()">Calcular lente ideal</button>
+        </form>
+    </main>
+</body>
+<script>
+
+    // A lente Prime só pode ser uma opção para o usuário que tiver grau esférico, seja do olho esquerdo 
+    // ou do olho direito, entre -3 e -12. Além disso, ela só atende até grau cilíndrico -2, porém, se o 
+    // usuário apresentar grau cilíndrico, ela passa a atender grau esférico entre -3 e -10. Já a lente Vision
+    // é uma opção para quem tem de 0 a -15 de esférico e até -5 de cilíndrico. Quando a lente Prime está 
+    // disponível, ela deve ser a única exibida para o usuário. 
+    var ge_esq = document.getElementById("ge-esq");
+    var ge_dir = document.getElementById("ge-dir");
+    var gc_esq = document.getElementById("gc-esq");
+    var gc_dir = document.getElementById("gc-dir");
+
+    function getValues(){
+        console.log(ge_esq.value, ge_dir.value, gc_esq.value, gc_dir.value)
+
+        if (
+            ge_esq.value && ge_dir.value <= -3 &&
+            ge_esq.value && ge_dir.value >= -12 && 
+            gc_esq.value && gc_dir.value == 0 ||
+            gc_esq.value && gc_dir.value >= -2 && 
+            ge_esq.value && ge_dir.value >= -10 && 
+            ge_esq.value && ge_dir.value <= -3
+            )
+
+            {
+            console.log("Lente Prime")
+            }
+        else if (
+                ge_esq.value && ge_dir.value >= -15 ||
+                gc_esq.value && gc_dir.value >= -5
+                )
+
+                {
+                console.log("Lente Vision")
+                }
+        else{
+            console.log("Desculpe, seus dados não se encaixam em nenhuma recomendação...")
+        }
+    }
+</script>
+</html>
