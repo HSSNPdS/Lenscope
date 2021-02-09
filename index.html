@@ -70,31 +70,24 @@
                     <button class="button" onclick="getValues()">
                         Calcular a sua lente ideal
                     </button>
-                    <div class="field">
-                        <div id="result">
-
-                        </div>
-                    </div>
                 </div>
+                <div class="field is-grouped is-grouped-centered block">
+                    <p id="result" class="title">
+                        ...
+                    </p>
+                </div>
+                
             </div>
         </div>
     </section>
 </body>
 <script>
-
-    // A lente Prime só pode ser uma opção para o usuário que tiver grau esférico, seja do olho esquerdo 
-    // ou do olho direito, entre -3 e -12. Além disso, ela só atende até grau cilíndrico -2, porém, se o 
-    // usuário apresentar grau cilíndrico, ela passa a atender grau esférico entre -3 e -10. Já a lente Vision
-    // é uma opção para quem tem de 0 a -15 de esférico e até -5 de cilíndrico. Quando a lente Prime está 
-    // disponível, ela deve ser a única exibida para o usuário. 
     var ge_esq = document.getElementById("ge-esq");
     var ge_dir = document.getElementById("ge-dir");
     var gc_esq = document.getElementById("gc-esq");
     var gc_dir = document.getElementById("gc-dir");
 
-    function getValues(){
-        console.log(ge_esq.value, ge_dir.value, gc_esq.value, gc_dir.value)
-
+    function calc(){
         if (
             ge_esq.value && ge_dir.value <= -3 &&
             ge_esq.value && ge_dir.value >= -12 && 
@@ -105,19 +98,26 @@
             )
 
             {
-            console.log("Lente Prime")
+            console.log("Lente Prime");
+            document.getElementById("result").innerHTML = "Lente Prime!"; 
             }
         else if (
-                ge_esq.value && ge_dir.value >= -15 ||
+                ge_esq.value && ge_dir.value >= -15 &&
                 gc_esq.value && gc_dir.value >= -5
                 )
-
                 {
-                console.log("Lente Vision")
+                console.log("Lente Vision");
+                document.getElementById("result").innerHTML = "Lente Vision!"; 
                 }
         else{
-            console.log("Desculpe, seus dados não se encaixam em nenhuma recomendação...")
+            console.log("Desculpe, seus dados não se encaixam em nenhuma recomendação...");
+            document.getElementById("result").innerHTML = "Desculpe, seus dados não se encaixam em nenhuma recomendação..."; 
         }
+    }
+
+    function getValues(){
+        console.log(ge_esq.value, ge_dir.value, gc_esq.value, gc_dir.value)
+        calc();
     }
 </script>
 </html>
