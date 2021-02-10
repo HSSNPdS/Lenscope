@@ -8,4 +8,4 @@
   
 <p>Acesse a aplicação pelo link abaixo:<p>
 
-[Lenscope](https://lenscope.vercel.app/){.target-blank .rel-nofollow}
+[Lenscope](https://lenscope.vercel.app/)
