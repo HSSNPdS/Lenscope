@@ -7,13 +7,35 @@
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <style>
+        #body{
+            background-image: url('./42263.jpg');
+            background-size: 25%;
+        }
         .block:not(:last-child) {
-        margin-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .top-block{
+            margin-top: 2rem;
+        }
+        .txt-block{
+            padding-bottom: 2rem;
+        }
+        .mgl{
+            margin-left: 0.5rem;
+        }
+        .small-ipt{
+            width: 35%;
+        }
+        .lb-mg{
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .centralize-lt{
+            padding-left: 10%;
         }
     </style>
     <title>Lenscope</title>
 </head>
-<body>
+<body id="body">
     <nav class="navbar is-dark">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://lenscope.com.br/" target="_blank">
@@ -30,53 +52,62 @@
     <section class="section">
         <div class="hero is-small">
             <div class="hero-body">
-                    <div class="container is-max-desktop">
-                        <p class="title mg-small">Insira abaixo o seu grau esférico</p>
-                    <form onsubmit="validate(event)">
-                        <div class="field is-horizontal is-grouped is-grouped-centered block">
-                            <label class="label">
-                                Do olho esquerdo:
-                            </label>
-                            <div class="control">
-                                <input class="input" id="ge-esq" type="number" min="-15" max="0" step="0.25" required>
-                            </div>
-                            
-                            <label class="label">
-                                Do olho direito:
-                            </label>
-                            <div class="control">
-                            <input class="input" id="ge-dir" type="number" min="-15" max="0" step="0.25" required>
+                <form onsubmit="validate(event)">
+                    <div class="container">
+                        <div class="box">
+                        <p class="title has-text-centered txt-block">Insira abaixo o seu grau esférico</p>
+
+                        <div class="field is-horizontal is-grouped is-grouped-centered block centralize-lt">
+                        <label class="label lb-mg">
+                            Do olho esquerdo:
+                        </label>
+                        <div class="control">
+                            <input class="input small-ipt" id="ge-esq" type="number" min="-15" max="0" step="0.25" required>
+                        </div>
+
+                        <label class="label lb-mg">
+                            Do olho direito:
+                        </label>
+                        <div class="control">
+                        <input class="input small-ipt" id="ge-dir" type="number" min="-15" max="0" step="0.25" required>
                         </div>
                     </div>
-                    <div class="container is-max-desktop">
-                        <p class="title">Insira abaixo o seu grau cilíndrico</p>
-    
-                        <div class="field is-horizontal is-grouped is-grouped-centered block">
-                            <label class="label">
-                                Do olho esquerdo:
-                            </label>
-                            <div class="control">
-                                <input class="input clear" id="gc-esq" type="number" min="-6" max="0" step="0.25">
+                    <div class="container is-fullhd">
+                        <p class="title has-text-centered txt-block">Insira abaixo o seu grau cilíndrico</p>
+                        
+                        
+                            <div class="field is-horizontal is-grouped is-grouped-centered block centralize-lt">
+                                <label class="label lb-mg ">
+                                    Do olho esquerdo:
+                                </label>
+                                <div class="control">
+                                    <input class="input small-ipt" id="gc-esq" type="number" min="-6" max="0" step="0.25" required>
+                                </div>
+                                
+                                
+                                <label class="label lb-mg">
+                                    Do olho direito:
+                                </label>
+                                <div class="control">
+                                <input class="input small-ipt" id="gc-dir" type="number" min="-6" max="0" step="0.25" required>
                             </div>
-                            
-                            <label class="label">
-                                Do olho direito:
-                            </label>
-                            <div class="control">
-                            <input class="input" id="gc-dir" type="number" min="-6" max="0" step="0.25">
-                        </div>
+                        </div> 
                     </div>
-                <div class="field is-grouped is-grouped-centered block">
-                    <button class="button is-info">
-                        Calcular a sua lente ideal
-                    </button>
-                </div>
+                    <div class="field is-grouped is-grouped-centered top-block">
+                        <button class="button is-info" type="submit">
+                            Calcular a sua lente ideal
+                        </button>
+                        <button id="clear" class="button is-dark mgl" type="reset" onclick="document.getElementById('result').innerHTML='...'">
+                            Limpar
+                        </button>
+                    </div>
+                    <div class="field is-grouped is-grouped-centered block">
+                        <p id="result" class="title is-4 top-block">
+                            ...
+                        </p>
+                    </div>
+                    </div>
                 </form>
-                <div class="field is-grouped is-grouped-centered block">
-                    <p id="result" class="title is-4">
-                        ...
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -103,15 +134,26 @@
             }
         else if (
                 ge_esq.value && ge_dir.value >= -15 &&
-                gc_esq.value && gc_dir.value >= -5
+                gc_esq.value && gc_dir.value >= -5 &&
+                ge_esq.value && ge_dir.value < 0 &&
+                gc_esq.value && gc_dir.value < 0
                 )
                 {
                 console.log("Lente Vision");
                 document.getElementById("result").innerHTML = "Lente Vision!"; 
-                }
+                }       
         else{
             console.log("Desculpe, seus dados não se encaixam em nenhuma recomendação...");
             document.getElementById("result").innerHTML = "Desculpe, seus dados não se encaixam em nenhuma recomendação..."; 
+        }
+
+        if  (
+            ge_esq.value && ge_dir.value == 0 &&
+            gc_esq.value && gc_dir.value == 0
+            )
+            {
+            console.log("Sua visão é excelente! Não há necessidade usar óculos...");
+            document.getElementById("result").innerHTML = "Sua visão é excelente! Não há necessidade usar óculos...";
         }
     }
 
@@ -119,7 +161,7 @@
         console.log(ge_esq.value, ge_dir.value, gc_esq.value, gc_dir.value)
         calc();
     }
-    
+
     function validate(event){
         event.preventDefault();
         getGlasses();
