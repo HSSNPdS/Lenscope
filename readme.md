@@ -7,4 +7,5 @@
 <em>
   
 <p>Acesse a aplicação pelo link abaixo:<p>
-[Lenscope](https://lenscope.vercel.app/)
+
+[Lenscope](https://lenscope.vercel.app/){:target="_blank"}
