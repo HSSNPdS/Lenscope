@@ -1,10 +1,9 @@
-# Project Title
+# Sobre o desafio
 
-One Paragraph of project description goes here
+As intruções para fazer a página são essas, sem tirar, adicionar ou modificar qualquer palavra:
 
-This initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2), but as
-I can no longer open that page as there are too many comments, I have
-moved it here.
+<em>
+"Em uma compra online, o usuário insere informações de sua receita oftálmica, e nosso sistema deve exibir uma lente que atende a sua necessidade. Precisamos captar 4 parâmetros numéricos do usuário. São eles: grau esférico do olho esquerdo, grau esférico do olho direito, grau cilíndrico do olho esquerdo e grau cilíndrico do olho direito. A lente Prime só pode ser uma opção para o usuário que tiver grau esférico, seja do olho esquerdo ou do olho direito, entre -3 e -12. Além disso, ela só atende até grau cilíndrico -2, porém, se o usuário apresentar grau cilíndrico, ela passa a atender grau esférico entre -3 e -10. Já a lente Vision é uma opção para quem tem de 0 a -15 de esférico e até -5 de cilíndrico. Quando a lente Prime está disponível, ela deve ser a única exibida para o usuário. OBS: O grau limite que o usuário pode inserir é de 0 a -15 para esférico e -6 para cilíndrico e são números iterados de 0,25 em 0,25 (ex: -0,25; 0; +0,25; etc)"
+<em>
 
-[Link para acessar a aplicação](https://github.com/P)
+[Link para acessar a aplicação](https://lenscope.vercel.app/)
